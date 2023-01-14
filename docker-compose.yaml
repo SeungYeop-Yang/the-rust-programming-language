@@ -1,14 +1,10 @@
 # if you want to try the docker as your development env:
-# Prerequisite if you want to run TF or CLI:
-#     export IBMCLOUD_API_KEY=<YOURS> # pragma: allowlist secret
-# optional:
-#     export WORKDIR="/$(basename $(pwd))"
 ##########################################################
 # Run:
-#   docker-compose run dev-env
+#   docker-compose run rust
 version: "3.3"
 services:
-  dev-env:
+  rust:
     privileged: true
     build:
       context: .
@@ -16,12 +12,10 @@ services:
     volumes:
       # For future ssh use in development
       - ~/.ssh:/home/ubuntu/.ssh:ro
-      - .:/dev-env
+      - .:/rust
       - /var/run/docker.sock:/var/run/docker.sock
       - ~/.gitconfig:/home/ubuntu/.gitconfig:ro
-    environment:
-      IBMCLOUD_API_KEY: "$IBMCLOUD_API_KEY"
-    working_dir: /dev-env
+    working_dir: /rust
 
 #  dev-env-workdir:
 #    privileged: true
