@@ -14,7 +14,7 @@ Please install the items below:
 * docker
 * docker-compose
 
-## How to run
+## How to run dev-env
 ```
 $ docker-compose run rust
 ```

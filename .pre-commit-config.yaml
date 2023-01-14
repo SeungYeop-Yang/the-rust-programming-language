@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.3.0
+    rev: v4.4.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
@@ -11,7 +11,7 @@ repos:
     # You are encouraged to use static refs such as tags, instead of branch name
     #
     # Running "pre-commit autoupdate" would automatically updates rev to latest tag
-    rev: 0.13.1+ibm.55.dss
+    rev: 0.13.1+ibm.56.dss
     hooks:
       - id: detect-secrets # pragma: whitelist secret
         # Add options for detect-secrets-hook binary. You can run `detect-secrets-hook --help` to list out all possible options.
@@ -20,27 +20,32 @@ repos:
         # when "--baseline" with "--use-all-plugins", pre-commit scan with all available plugins
         # add "--fail-on-non-audited" to fail pre-commit for unaudited potential secrets
         args: [--baseline, .secrets.baseline, --use-all-plugins]
-  - repo: https://github.com/dnephin/pre-commit-golang
-    rev: v0.5.1
-    hooks:
-      - id: go-fmt
-      - id: go-lint
-      - id: go-imports
-      - id: go-cyclo
-        args: [-over=15]
-      - id: validate-toml
-      - id: no-go-testing
-      - id: go-unit-tests
-      - id: go-build
-      - id: go-mod-tidy
-  - repo: https://github.com/gruntwork-io/pre-commit
-    rev: v0.1.17
-    hooks:
-      - id: tflint
-      - id: terraform-validate
-      - id: terraform-fmt
+  #- repo: https://github.com/dnephin/pre-commit-golang
+  # rev: v0.5.1
+  # hooks:
+  #   - id: go-fmt
+  #   - id: go-lint
+  #   - id: go-imports
+  #   - id: go-cyclo
+  #     args: [-over=15]
+  #   #- id: validate-toml
+  #   - id: no-go-testing
+  #   - id: go-unit-tests
+  #   - id: go-build
+  #   - id: go-mod-tidy
+  # repo: https://github.com/gruntwork-io/pre-commit
+  # rev: v0.1.17
+  # hooks:
+  #   - id: tflint
+  #   - id: terraform-validate
+  #   - id: terraform-fmt
   # tfsec
-  - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.76.0
-    hooks:
-      - id: terraform_tfsec
+  # repo: https://github.com/antonbabenko/pre-commit-terraform
+  # rev: v1.77.0
+  # hooks:
+  #   - id: terraform_tfsec
+  # rust
+  #- repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
+  #  rev: v2.5.0
+  #  hooks:
+  #    - id: pretty-format-rust
