@@ -86,3 +86,57 @@ hello
 5
 ubuntu@8643b304b1a1:/rust/chap04/projects/ownership$
 ```
+
+01/17/2023
+learned about the ownership earlier, let's continue:
+reference and borrowing
+
+A reference is like a pointer in that it’s an address we can follow to access the data stored at that address; that data is owned by some other variable. Unlike a pointer, a reference is guaranteed to point to a valid value of a particular type for the life of that reference.
+
+Just as variables are immutable by default, so are references. We’re not allowed to modify something we have a reference to.
+
+```
+ubuntu@8643b304b1a1:/rust/chap04/projects/ownership$ cat src/main.rs
+fn main() {
+    // les s = "hello";                     // this is a literal
+    let mut s = String::from("hello");      // this is a variable; s is valid from this point forward
+
+    change(&mut s);
+
+    println!("{s}");
+}
+
+fn change(some_string: &mut String) {
+    some_string.push_str(", world")
+}
+ubuntu@8643b304b1a1:/rust/chap04/projects/ownership$ cargo run
+   Compiling ownership v0.1.0 (/rust/chap04/projects/ownership)
+    Finished dev [unoptimized + debuginfo] target(s) in 1.59s
+     Running `target/debug/ownership`
+hello, world
+ubuntu@8643b304b1a1:/rust/chap04/projects/ownership$
+
+ubuntu@8643b304b1a1:/rust/chap04/projects/ownership$ cat src/main.rs
+fn main() {
+    // les s = "hello";                     // this is a literal
+    let mut s = String::from("hello");      // this is a variable; s is valid from this point forward
+
+    let r1 = &s;
+    let r2 = &s;
+    println!("{r1}, {r2}");
+
+    let r3 = &mut s;
+
+    println!("{r3}");
+}
+
+ubuntu@8643b304b1a1:/rust/chap04/projects/ownership$ cargo run
+   Compiling ownership v0.1.0 (/rust/chap04/projects/ownership)
+    Finished dev [unoptimized + debuginfo] target(s) in 1.47s
+     Running `target/debug/ownership`
+hello, hello
+hello
+ubuntu@8643b304b1a1:/rust/chap04/projects/ownership$
+```
+
+dangling pointer—a pointer that references a location in memory that may have been given to someone else—by freeing some memory while preserving a pointer to that memory. In Rust, by contrast, the compiler guarantees that references will never be dangling references: if you have a reference to some data, the compiler will ensure that the data will not go out of scope before the reference to the data does.
