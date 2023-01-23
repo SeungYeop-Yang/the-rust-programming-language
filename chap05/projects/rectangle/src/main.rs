@@ -22,7 +22,7 @@ fn main() {
 
     println!(
         "The area of the rectangle is {} square pixels.",
-        rect1.area(),    
+        rect1.area(),
     );
 
     let sq = Rectangle::square(3);
@@ -44,7 +44,7 @@ impl Rectangle {
     fn square(size: u32) -> Self {
         Self {
             width: size,
-            height: size, 
+            height: size,
         }
     }
 }
